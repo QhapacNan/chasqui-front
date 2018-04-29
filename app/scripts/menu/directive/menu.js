@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Menu').directive('menu', function(){
+angular.module('Menu').directive('menu', function () {
 
  return {
   restrict: 'E',

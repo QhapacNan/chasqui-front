@@ -1,4 +1,22 @@
 /* app css stylesheet */
+/* ADDS A BROWSER PREFIX TO THE PROPERTY */
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -khtml-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin transition($properties...) {
+
+  @if length($properties) >= 1 {
+    @include css3-prefix('transition', $properties);
+  } @else {
+    @include css3-prefix('transition', $what: all, $length: 1s, $easing: ease-in-out);
+  }
+}
 
 .padding-0 {
   padding: 0;
@@ -47,7 +65,9 @@
 
 menu {
   margin: 0;
+  padding: 0;
 }
+
 .sidebar {
   position: absolute;
   height: 100vh;
@@ -57,11 +77,37 @@ menu {
   background-color: #fff;
   left: 0;
   margin-left: -200%;
+  @include transition (all .5s ease-out);
 
-  .active {
+  &.active {
     margin-left: 0;
   }
+  .user-info {
+    background-color: #C24859;
+    padding: 25px 15px 10px;
+  }
+
+  .user-photo {
+    border-radius: 50%;
+    width: 50px;
+  }
+  .user-name {
+    color: #fff;
+    margin: 15px 0 0;
+  }
+
+  ul {
+    padding: 20px;
+    li {
+      display: block;
+      padding: 10px 0;
+      a {
+        color: #333;
+      }
+    }
+  }
 }
+
 .overlay {
   height: 100vh;
   position: fixed;
@@ -72,11 +118,16 @@ menu {
   z-index: 4;
   display: none;
 
-  .active {
+  &.active {
     display: block;
   }
 }
 
 header {
   background-color: #C24859;
+  padding: 7.5px 15px;
+  .fa-bars {
+    color: #fff;
+    font-size: 20px;
+  }
 }

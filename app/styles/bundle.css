@@ -1,4 +1,5 @@
 /* app css stylesheet */
+/* ADDS A BROWSER PREFIX TO THE PROPERTY */
 .padding-0 {
   padding: 0; }
 
@@ -31,7 +32,8 @@
   height: 50px; }
 
 menu {
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
 
 .sidebar {
   position: absolute;
@@ -41,9 +43,31 @@ menu {
   width: 250px;
   background-color: #fff;
   left: 0;
-  margin-left: -200%; }
-  .sidebar .active {
+  margin-left: -200%;
+  -webkit-transition: all 0.5s ease-out;
+  -khtml-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out; }
+  .sidebar.active {
     margin-left: 0; }
+  .sidebar .user-info {
+    background-color: #C24859;
+    padding: 25px 15px 10px; }
+  .sidebar .user-photo {
+    border-radius: 50%;
+    width: 50px; }
+  .sidebar .user-name {
+    color: #fff;
+    margin: 15px 0 0; }
+  .sidebar ul {
+    padding: 20px; }
+    .sidebar ul li {
+      display: block;
+      padding: 10px 0; }
+      .sidebar ul li a {
+        color: #333; }
 
 .overlay {
   height: 100vh;
@@ -54,10 +78,14 @@ menu {
   left: 0;
   z-index: 4;
   display: none; }
-  .overlay .active {
+  .overlay.active {
     display: block; }
 
 header {
-  background-color: #C24859; }
+  background-color: #C24859;
+  padding: 7.5px 15px; }
+  header .fa-bars {
+    color: #fff;
+    font-size: 20px; }
 
 /*# sourceMappingURL=bundle.css.map */

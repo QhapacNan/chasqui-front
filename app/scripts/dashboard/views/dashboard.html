@@ -1,7 +1,4 @@
-<header>
- <img src="https://use.fontawesome.com/releases/v5.0.10/svgs/solid/bars.svg" height="25" alt="">
-</header>
-
+<menu></menu>
 <div class="container dashboard">
  <section>
   <!--<ul>-->
@@ -13,7 +10,7 @@
   <div class="row">
    <div class="col-12 padding-0">
     <ng-map map-type-control="false" street-view-control="false" fullscreen-control="false"
-            pan-control="false" scale-control="false" center="-8.0991000,-79.0336000" zoom-to-include-markers="auto">
+            pan-control="false" scale-control="false" center="-8.0991000,-79.0336000" zoom-to-include-markers="auto" style="height: 380px">
      <custom-marker ng-if="$root.locations" ng-repeat="user in locations" id="marker-user{{user.id}}"
                     position="{{user.latitude}}, {{user.longitude}}">
       <img src="../../../resources/images/map-pin.svg" height="25" class="active-order-bubble-order">

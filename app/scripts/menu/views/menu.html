@@ -1,28 +1,37 @@
+<header>
+ <i class="fa fa-bars" ng-click="openSidebar()"></i>
 
+ <img src="../../../resources/images/chasqui_isologo.png" class="pull-right" height="20" alt="">
+</header>
 
 <section class="sidebar">
- <ul class="menu">
+ <section class="user-info">
+  <img class="user-photo" height="50" src="../../../resources/images/foto-perfil.jpg" alt="">
+
+  <p class="user-name">Teresa Ocampo Moralejo</p>
+ </section>
+ <ul>
   <li>
    <i class="fa fa-home"></i>
-   <a href="#!/dashboard">Inicio</a>
+   <a ng-click="closeSidebar()" href="#!/dashboard">Inicio</a>
   </li>
   <li>
    <i class="fa fa-user-circle"></i>
-   <a href="#!/profile">Perfil</a>
+   <a ng-click="closeSidebar()" href="#!/profile">Perfil</a>
   </li>
   <li>
    <i class="fa fa-location-arrow"></i>
-   <a href="#!/status">Estado</a>
+   <a ng-click="closeSidebar()" href="#!/status">Estado</a>
   </li>
   <li>
    <i class="fa fa-edit"></i>
-   <a href="#!/requests">Solicitudes</a>
+   <a ng-click="closeSidebar()" href="#!/requests">Solicitudes</a>
   </li>
   <li>
    <i class="fa fa-comments"></i>
-   <a href="#!/comments">Mensajes</a>
+   <a  ng-click="closeSidebar()" href="#!/comments">Mensajes</a>
   </li>
  </ul>
 </section>
 
-<div class="overlay"></div>
+<div class="overlay" ng-click="closeSidebar()"></div>
