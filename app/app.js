@@ -1,8 +1,10 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.version',
+  'ngResource',
   'ngActionCable',
+  'myApp.controllers',
+  'myApp.services',
 ])
   .config(['$locationProvider', '$routeProvider',
     function($locationProvider, $routeProvider) {
@@ -26,10 +28,9 @@ angular.module('myApp', [
         })
         .otherwise({redirectTo: '/'});
     }])
-  .controller('dashboardController', function($scope) {
-  })
-  .run(function($rootScope, ActionCableChannel) {
+  .run(function($rootScope, UserResource, ActionCableChannel) {
     $rootScope.inputText = '';
+    $rootScope.user = User.get({id: 1});
     $rootScope.myData = [];
 
     // connect to ActionCable
