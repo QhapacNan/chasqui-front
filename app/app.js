@@ -58,6 +58,21 @@ angular.module('myApp', [
     }
    });
 
+   routes.push({
+    name: '/requests/new',
+     params: {
+       templateUrl: 'requests/new.html',
+       controller: 'requestsNewController',
+     }
+   });
+
+   routes.push({
+    name: '/requests/index',
+     params: {
+       templateUrl: 'requests/index.html',
+       controller: 'requestsIndexController',
+     }
+   });
 
    routes.forEach(function (route) {
     $routeProvider.when(route.name, route.params);

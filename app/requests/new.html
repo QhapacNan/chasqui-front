@@ -1,0 +1,95 @@
+<div class="container">
+  <h3>Intercambio de Recursos</h3>
+  <form>
+    <select name="request[type]">
+      <option value="have">Tengo</option>
+      <option value="need">Necesito</option>
+    </select>
+
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-user"></i>
+        </div>
+        <div class="col-8">
+          Voluntarios
+          <span class="font-italic">(N° de Personas)</span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-heartbeat"></i>
+        </div>
+        <div class="col-8">
+          Ayuda Médica
+          <span class="font-italic">(N° de Personas)</span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-wrench"></i>
+        </div>
+        <div class="col-8">
+          Mecánica
+          <span class="font-italic">(cant.)</span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-cutlery"></i>
+        </div>
+        <div class="col-8">
+          Alimentos
+          <span class="font-italic"></span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-tint"></i>
+        </div>
+        <div class="col-8">
+          Agua
+          <span class="font-italic"></span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <fieldset class="form-group">
+      <label class="form-row">
+        <div class="col-2 d-flex justify-content-center">
+          <i class="fa fa-lg fa-bed"></i>
+        </div>
+        <div class="col-8">
+          Refugio
+          <span class="font-italic"></span>
+        </div>
+        <input class="col-2" type="number">
+      </label>
+    </fieldset>
+    <section>
+      <header>
+        <h5
+          class="font-weight-medium font-italic">
+          {{ user.name }}
+        </h5>
+      </header>
+      <textarea  name="request[message]" cols="30" rows="10">
+      </textarea>
+    </section>
+    <button
+      type="submit">
+    </button>
+  </form>
+</div>
