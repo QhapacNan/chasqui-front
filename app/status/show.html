@@ -1,11 +1,46 @@
 <div class="container">
   <h3>Mi estado</h3>
   <button
-    ng-class="statusButtonClass"
+    ng-class="'btn btn-' + buttonClass()"
+    ng-click="showModal()"
     type="button">
-    {{ statusButtonText }}
+    {{ buttonText() }}
   </button>
+  <div
+    ng-show="modalShown"
+    class="modal modal-fade d-block"
+    tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Seleccione su estado actual</h5>
+        </div>
+        <div class="modal-body">
+          <button
+            ng-click="updateActivity('active')"
+            class="btn btn-success"
+            type="button">
+            Activo
+          </button>
+          <button
+            ng-click="updateActivity('inactive')"
+            class="btn btn-warning"
+            type="button">
+            Inactivo
+          </button>
+        </div>
+        <div class="modal-footer d-flex justify-content-right">
+          <button
+            ng-click="hideModal()"
+            type="button"
+            class="btn btn-link">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <span>
-    Click para editar
+    Click para editar.
   </span>
 </div>

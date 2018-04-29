@@ -19,6 +19,7 @@ angular.module('myApp', [
       })
       .when('/status', {
         templateUrl: 'status/show.html',
+        controller: 'statusController',
       })
       .when('/requests', {
         templateUrl: 'requests/index.html',
@@ -29,24 +30,26 @@ angular.module('myApp', [
       .otherwise({redirectTo: '/'});
     }
   )
-  .run(function($rootScope, UsersResource, ActionCableChannel) {
-    $rootScope.inputText = '';
-    $rootScope.user = UsersResource.get({id: 1});
-    $rootScope.myData = [];
+  .run(
+    function($rootScope, UsersResource, LocationsResource, ActionCableChannel) {
+      $rootScope.inputText = '';
+      $rootScope.user = UsersResource.get({id: 1});
+      $rootScope.locations = LocationsResource.query();
 
-    // connect to ActionCable
-    const consumer = new ActionCableChannel('FeedChannel', {user_id: 1});
-    const callback = function(message) {
-      $rootScope.myData.push(message);
-    };
-    consumer.subscribe(callback).then(function() {
-      $rootScope.sendToMyChannel = function(message) {
-        consumer.send(message, 'send_a_message');
+      // connect to ActionCable
+      const consumer = new ActionCableChannel('LocationsChannel');
+      const callback = function(location) {
+        locationIndex =
+          $rootScope.locations.findIndex((x) => x.user_id === location.user_id);
+
+        if (locationIndex > -1) {
+          $rootScope.locations[locationIndex] = location;
+        }
       };
-      $rootScope.$on('$destroy', function() {
-        consumer.unsubscribe().then(function() {
-          $rootScope.sendToMyChannel = undefined;
+
+      consumer.subscribe(callback).then(function() {
+        $rootScope.$on('$destroy', function() {
+          consumer.unsubscribe();
         });
       });
     });
-  });

@@ -1,6 +1,12 @@
 <div class="container">
   <section style="height: 250px;">
+    <ul>
+      <li ng-repeat="location in locations">
+        Lat: {{ location.latitude }}, Long: {{ location.longitude }}
+      </li>
+    </ul>
     <!-- mapa -->
+
     <button ng-click="showModal()">
       Marcar tu posicion
     </button>
@@ -14,7 +20,16 @@
             <h5 class="modal-title">Agregar Ubicacion?</h5>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <label>Latitud</label>
+            <input
+              ng-model="newLatitude"
+              type="number"
+              step="0.00001">
+            <label>Longitud</label>
+            <input
+              ng-model="newLongitude"
+              type="number"
+              step="0.00001">
           </div>
           <div class="modal-footer">
             <button
