@@ -11,11 +11,20 @@ angular.module('myApp', [
       $locationProvider.hashPrefix('!');
 
       $routeProvider
-        .when('/', {
+        .when('/dashboard', {
           templateUrl: 'dashboard/show.html',
         })
         .when('/profile', {
           templateUrl: 'profile/show.html',
+        })
+        .when('/status', {
+          templateUrl: 'status/show.html',
+        })
+        .when('/requests', {
+          templateUrl: 'requests/index.html',
+        })
+        .when('/comments', {
+          templateUrl: 'comments/index.html',
         })
         .otherwise({redirectTo: '/'});
     }])
