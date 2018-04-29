@@ -1,7 +1,37 @@
 <div class="container">
   <section style="height: 250px;">
     <!-- mapa -->
+    <button ng-click="showModal()">
+      Marcar tu posicion
+    </button>
+    <div
+      ng-show="modalShown"
+      class="modal modal-fade d-block"
+      tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Agregar Ubicacion?</h5>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              ng-click="hideModal()"
+              type="button"
+              class="btn btn-secondary">
+              Cancelar
+            </button>
+            <button
+              ng-click="createLocation()"
+              type="button" class="btn btn-primary">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
   <section>
     <ul class="list-unstyled">
       <li class="w-50 float-left">

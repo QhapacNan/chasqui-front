@@ -6,31 +6,32 @@ angular.module('myApp', [
   'myApp.controllers',
   'myApp.services',
 ])
-  .config(['$locationProvider', '$routeProvider',
-    function($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
+  .config(function($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-      $routeProvider
-        .when('/dashboard', {
-          templateUrl: 'dashboard/show.html',
-        })
-        .when('/profile', {
-          templateUrl: 'profile/show.html',
-        })
-        .when('/status', {
-          templateUrl: 'status/show.html',
-        })
-        .when('/requests', {
-          templateUrl: 'requests/index.html',
-        })
-        .when('/comments', {
-          templateUrl: 'comments/index.html',
-        })
-        .otherwise({redirectTo: '/'});
-    }])
-  .run(function($rootScope, UserResource, ActionCableChannel) {
+    $routeProvider
+      .when('/dashboard', {
+        templateUrl: 'dashboard/show.html',
+        controller: 'dashboardController',
+      })
+      .when('/profile', {
+        templateUrl: 'profile/show.html',
+      })
+      .when('/status', {
+        templateUrl: 'status/show.html',
+      })
+      .when('/requests', {
+        templateUrl: 'requests/index.html',
+      })
+      .when('/comments', {
+        templateUrl: 'comments/index.html',
+      })
+      .otherwise({redirectTo: '/'});
+    }
+  )
+  .run(function($rootScope, UsersResource, ActionCableChannel) {
     $rootScope.inputText = '';
-    $rootScope.user = User.get({id: 1});
+    $rootScope.user = UsersResource.get({id: 1});
     $rootScope.myData = [];
 
     // connect to ActionCable
