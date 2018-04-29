@@ -5,51 +5,86 @@ angular.module('myApp', [
   'ngActionCable',
   'myApp.controllers',
   'myApp.services',
-])
-  .config(function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
+  'ngMap',
+  'Dashboard',
+  'Menu'
+ ])
+ .config(function ($locationProvider, $routeProvider) {
+   $locationProvider.hashPrefix('!');
 
-    $routeProvider
-      .when('/dashboard', {
-        templateUrl: 'dashboard/show.html',
-        controller: 'dashboardController',
-      })
-      .when('/profile', {
-        templateUrl: 'profile/show.html',
-      })
-      .when('/status', {
-        templateUrl: 'status/show.html',
-        controller: 'statusController',
-      })
-      .when('/requests', {
-        templateUrl: 'requests/index.html',
-      })
-      .when('/comments', {
-        templateUrl: 'comments/index.html',
-      })
-      .otherwise({redirectTo: '/'});
+   var routes = [];
+
+   routes.push({
+    name: '/main',
+    params: {
+     templateUrl: 'scripts/main/views/main.html',
+     controller: 'MainCtrl'
     }
-  )
-  .run(
-    function($rootScope, UsersResource, LocationsResource, ActionCableChannel) {
-      $rootScope.inputText = '';
-      $rootScope.user = UsersResource.get({id: 1});
-      $rootScope.locations = LocationsResource.query();
+   });
+   routes.push({
+    name: '/dashboard',
+    params: {
+     templateUrl: 'scripts/dashboard/views/dashboard.html',
+     controller: 'DashboardCtrl'
+    }
+   });
 
-      // connect to ActionCable
-      const consumer = new ActionCableChannel('LocationsChannel');
-      const callback = function(location) {
-        locationIndex =
-          $rootScope.locations.findIndex((x) => x.user_id === location.user_id);
+   routes.push({
+    name: '/status',
+    params: {
+     templateUrl: 'status/show.html',
+     controller: 'statusController'
+    }
+   });
 
-        if (locationIndex > -1) {
-          $rootScope.locations[locationIndex] = location;
-        }
-      };
+   routes.push({
+    name: '/requests',
+    params: {
+     templateUrl: 'requests/index.html'
+    }
+   });
 
-      consumer.subscribe(callback).then(function() {
-        $rootScope.$on('$destroy', function() {
-          consumer.unsubscribe();
-        });
-      });
+   routes.push({
+    name: '/profile',
+    params: {
+     templateUrl: 'profile/show.html'
+    }
+   });
+
+   routes.push({
+    name: '/comments',
+    params: {
+     templateUrl: 'comments/index.html'
+    }
+   });
+
+
+   routes.forEach(function (route) {
+    $routeProvider.when(route.name, route.params);
+   });
+
+   $routeProvider.otherwise({redirectTo: '/'});
+  }
+ )
+ .run(
+  function ($rootScope, UsersResource, LocationsResource, ActionCableChannel) {
+   $rootScope.inputText = '';
+   $rootScope.user = UsersResource.get({id: 1});
+   $rootScope.locations = LocationsResource.query();
+
+   // connect to ActionCable
+   const consumer = new ActionCableChannel('LocationsChannel');
+   const callback = function (location) {
+    let locationIndex = $rootScope.locations.findIndex((x) => x.user_id === location.user_id);
+
+    if (locationIndex > -1) {
+     $rootScope.locations[locationIndex] = location;
+    }
+   };
+
+   consumer.subscribe(callback).then(function () {
+    $rootScope.$on('$destroy', function () {
+     consumer.unsubscribe();
     });
+   });
+  });

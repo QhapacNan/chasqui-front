@@ -1,0 +1,63 @@
+/* app css stylesheet */
+.padding-0 {
+  padding: 0; }
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em; }
+  .menu:before {
+    content: "["; }
+  .menu:after {
+    content: "]"; }
+  .menu > li {
+    display: inline; }
+  .menu > li + li:before {
+    content: "|";
+    padding-right: 0.3em; }
+
+.dashboard {
+  color: #333; }
+  .dashboard .list-unstyled {
+    font-size: 14px;
+    line-height: 2.3; }
+    .dashboard .list-unstyled .fa {
+      font-size: 18px;
+      width: 22px; }
+
+.footer {
+  background-color: #C24859;
+  height: 50px; }
+
+menu {
+  margin: 0; }
+
+.sidebar {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  z-index: 5;
+  width: 250px;
+  background-color: #fff;
+  left: 0;
+  margin-left: -200%; }
+  .sidebar .active {
+    margin-left: 0; }
+
+.overlay {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: none; }
+  .overlay .active {
+    display: block; }
+
+header {
+  background-color: #C24859; }
+
+/*# sourceMappingURL=bundle.css.map */
